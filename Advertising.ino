@@ -5,7 +5,7 @@
 #define SIZE 26
 CRGB leds[NUM_LEDS];
 
-const byte IMAGES[][8] = {     //IMAGES[0] is space, phir alphabet
+const byte IMAGES[][8] = {     //IMAGES[0] is space, the rest are the alphabet
 {
   B00000000,
   B00000000,
@@ -15,8 +15,7 @@ const byte IMAGES[][8] = {     //IMAGES[0] is space, phir alphabet
   B00000000,
   B00000000,
   B00000000
-},
-  
+},  
 {
   B00000000,
   B00111100,
@@ -500,7 +499,7 @@ const byte IMAGES[][8] = {     //IMAGES[0] is space, phir alphabet
 bool words[8*100][8];
 int stlen;
 
-void scroll()
+void scroll() //This function scrolls the screen of the drone of column to the left.
 {
   for(int i=1;i<34;i++)
   {
@@ -512,12 +511,12 @@ void scroll()
 }
 
 
-void addcolumn(int c_num)    //msb is topmost element of column
+void addcolumn(int c_num)    //msb is topmost element of column, this function adds a new column from the rightmost edge.
 {
   for(int i=0;i<8;i++)
   {
     bool a= words[c_num][i];
-    leds[33+35*i-35]=CRGB(0*a,0*a,255*a);
+    leds[33+35*i-35]=CRGB(0*a,0*a,255*a); //The RGB values may be changed on the right side to display the desired colour.
   }
 }
 
@@ -530,15 +529,14 @@ void setup() {
           leds[l]=CRGB(0,0,0);
         }
 
-      for(int l=0;l<8;l++)
+      for(int l=0;l<8;l++)     //This is a buffer zone to help differentiate between the start and end of the cylindrical screen.
       {
         leds[34+35*l]=CRGB(50,50,50);
       }
 
 
     String s;
-    s= "TECHEVINCE ";      ///////////////////////////////////////////////////
-    stlen= s.length();
+    s= "TECHEVINCE ";      //Input text goes here.
     char extract;
     for(int i=0;i<stlen;i++)
     {
